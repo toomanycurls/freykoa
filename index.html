@@ -99,7 +99,20 @@
     max-width: 860px;
   }
 
-  /* ── EYEBROW ── */
+  /* ── TOP STRIP (eyebrow + coming soon) ── */
+  .top-strip {
+    position: fixed;
+    top: 28px;
+    left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.1s forwards;
+  }
+
   .eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -107,30 +120,25 @@
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 38px;
-    opacity: 0;
-    animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) 0.1s forwards;
   }
 
   /* ── COMING SOON ITALIC ── */
   .coming-soon {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(18px, 2.5vw, 26px);
+    font-size: clamp(16px, 2vw, 22px);
     font-weight: 400;
     color: var(--offwhite);
     letter-spacing: 1px;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) 0.25s forwards;
   }
 
   /* ── LOGO LOCKUP ── */
   .lockup {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 36px;
+    gap: 24px;
     margin-bottom: 40px;
     opacity: 0;
     animation: fadeUp 1s cubic-bezier(.22,1,.36,1) 0.4s forwards;
@@ -140,19 +148,11 @@
   .frey-unit {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 3px;
   }
 
-  .jacob-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    padding-left: 5px;
-  }
+  .jacob-label { display: none; }
 
   .frey-box {
     border: 3px solid var(--white);
@@ -160,24 +160,6 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-  }
-
-  /* Corner accent squares */
-  .frey-box::before {
-    content: '';
-    position: absolute;
-    top: -8px; left: -8px;
-    width: 11px; height: 11px;
-    background: var(--navy-dark);
-    border: 3px solid var(--white);
-  }
-  .frey-box::after {
-    content: '';
-    position: absolute;
-    bottom: -8px; right: -8px;
-    width: 11px; height: 11px;
-    background: var(--navy-dark);
-    border: 3px solid var(--white);
   }
 
   .frey-text {
@@ -189,33 +171,14 @@
     line-height: 1;
   }
 
-  .mayor-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 8.5px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    text-align: center;
-    width: 100%;
-    margin-top: 2px;
-  }
-
-  /* Divider dot */
-  .lockup-dot {
-    font-size: 28px;
-    color: rgba(255,255,255,0.2);
-    font-weight: 100;
-    align-self: center;
-    margin-top: 12px;
-  }
+  .mayor-label { display: none; }
 
   /* KOA unit */
   .koa-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 0px;
   }
 
   .koa-icon {
@@ -352,6 +315,12 @@
 </head>
 <body>
 
+<!-- Top strip: location + coming soon -->
+<div class="top-strip">
+  <div class="eyebrow">Minneapolis, Minnesota</div>
+  <div class="coming-soon">Coming Soon</div>
+</div>
+
 <!-- Background atmosphere -->
 <div class="bg-layer">
   <div class="bg-corner tl"></div>
@@ -363,11 +332,7 @@
 <!-- Main splash content -->
 <div class="splash">
 
-  <div class="eyebrow">Minneapolis, Minnesota</div>
-
-  <div class="coming-soon">Coming Soon</div>
-
-  <!-- FREY · KOA lockup -->
+  <!-- FREY stacked over KOA -->
   <div class="lockup">
 
     <!-- FREY -->
@@ -379,18 +344,16 @@
       <div class="mayor-label">Mayor of Minneapolis</div>
     </div>
 
-    <div class="lockup-dot">·</div>
-
     <!-- KOA -->
     <div class="koa-unit">
       <!-- Crossed-poles tent icon -->
+      <div class="koa-text">KOA</div>
       <svg class="koa-icon" width="48" height="48" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="18" y1="8" x2="54" y2="64" stroke="white" stroke-width="5" stroke-linecap="round"/>
         <line x1="54" y1="8" x2="18" y2="64" stroke="white" stroke-width="5" stroke-linecap="round"/>
         <line x1="10" y1="64" x2="62" y2="64" stroke="white" stroke-width="4" stroke-linecap="round"/>
         <circle cx="36" cy="36" r="4" fill="#122448" stroke="white" stroke-width="2"/>
       </svg>
-      <div class="koa-text">KOA</div>
     </div>
 
   </div>
