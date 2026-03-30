@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frey KOA — Minneapolis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Playfair+Display:ital,wght@1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy:   #1e3a6e;
+    --navy-dark: #122448;
+    --navy-mid: #2a4d8f;
+    --white:  #ffffff;
+    --offwhite: rgba(255,255,255,0.85);
+    --muted:  rgba(255,255,255,0.45);
+    --accent: rgba(255,255,255,0.15);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--navy-dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ── ATMOSPHERIC BACKGROUND ── */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* Subtle scanline texture */
+  .bg-layer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255,255,255,0.012) 3px,
+      rgba(255,255,255,0.012) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Radial light bloom */
+  .bg-layer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 45%,
+      rgba(42, 77, 143, 0.55) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Corner fades */
+  .bg-corner {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+  .bg-corner.tl { top: -120px; left: -120px; background: rgba(14,28,60,0.8); }
+  .bg-corner.tr { top: -100px; right: -100px; background: rgba(10,22,50,0.7); }
+  .bg-corner.bl { bottom: -120px; left: -80px; background: rgba(10,22,50,0.7); }
+  .bg-corner.br { bottom: -100px; right: -100px; background: rgba(14,28,60,0.75); }
+
+  /* ── MAIN LAYOUT ── */
+  .splash {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 38px;
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) 0.1s forwards;
+  }
+
+  /* ── COMING SOON ITALIC ── */
+  .coming-soon {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 400;
+    color: var(--offwhite);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) 0.25s forwards;
+  }
+
+  /* ── LOGO LOCKUP ── */
+  .lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s cubic-bezier(.22,1,.36,1) 0.4s forwards;
+  }
+
+  /* FREY boxed logo */
+  .frey-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .jacob-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    padding-left: 5px;
+  }
+
+  .frey-box {
+    border: 3px solid var(--white);
+    padding: 6px 22px 6px 16px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Corner accent squares */
+  .frey-box::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    width: 11px; height: 11px;
+    background: var(--navy-dark);
+    border: 3px solid var(--white);
+  }
+  .frey-box::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; right: -8px;
+    width: 11px; height: 11px;
+    background: var(--navy-dark);
+    border: 3px solid var(--white);
+  }
+
+  .frey-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(56px, 9vw, 88px);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+
+  .mayor-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8.5px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  /* Divider dot */
+  .lockup-dot {
+    font-size: 28px;
+    color: rgba(255,255,255,0.2);
+    font-weight: 100;
+    align-self: center;
+    margin-top: 12px;
+  }
+
+  /* KOA unit */
+  .koa-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .koa-icon {
+    opacity: 0.9;
+  }
+
+  .koa-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(56px, 9vw, 88px);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 8px;
+    line-height: 1;
+  }
+
+  /* ── RULE ── */
+  .h-rule {
+    width: min(480px, 85vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.75s forwards;
+  }
+
+  /* ── TAGLINE ── */
+  .tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(12px, 1.5vw, 14px);
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.22,1,.36,1) 0.85s forwards;
+  }
+
+  .tagline span {
+    color: rgba(255,255,255,0.22);
+    margin: 0 10px;
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-wrap {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.22,1,.36,1) 1s forwards;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.06);
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+  }
+
+  .cta-btn:hover::before { transform: translateX(0); }
+  .cta-btn:hover { border-color: rgba(255,255,255,0.85); }
+
+  .cta-arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+  }
+  .cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+  /* ── BOTTOM INFO ── */
+  .bottom-strip {
+    position: fixed;
+    bottom: 28px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.3s forwards;
+  }
+
+  .bottom-item {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .bottom-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .bottom-item a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .lockup { gap: 20px; }
+    .lockup-dot { display: none; }
+    .bottom-strip { gap: 24px; flex-wrap: wrap; padding: 0 20px; bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background atmosphere -->
+<div class="bg-layer">
+  <div class="bg-corner tl"></div>
+  <div class="bg-corner tr"></div>
+  <div class="bg-corner bl"></div>
+  <div class="bg-corner br"></div>
+</div>
+
+<!-- Main splash content -->
+<div class="splash">
+
+  <div class="eyebrow">Minneapolis, Minnesota</div>
+
+  <div class="coming-soon">Coming Soon</div>
+
+  <!-- FREY · KOA lockup -->
+  <div class="lockup">
+
+    <!-- FREY -->
+    <div class="frey-unit">
+      <div class="jacob-label">Jacob</div>
+      <div class="frey-box">
+        <span class="frey-text">FREY</span>
+      </div>
+      <div class="mayor-label">Mayor of Minneapolis</div>
+    </div>
+
+    <div class="lockup-dot">·</div>
+
+    <!-- KOA -->
+    <div class="koa-unit">
+      <!-- Crossed-poles tent icon -->
+      <svg class="koa-icon" width="48" height="48" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="18" y1="8" x2="54" y2="64" stroke="white" stroke-width="5" stroke-linecap="round"/>
+        <line x1="54" y1="8" x2="18" y2="64" stroke="white" stroke-width="5" stroke-linecap="round"/>
+        <line x1="10" y1="64" x2="62" y2="64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="36" cy="36" r="4" fill="#122448" stroke="white" stroke-width="2"/>
+      </svg>
+      <div class="koa-text">KOA</div>
+    </div>
+
+  </div>
+
+  <div class="h-rule"></div>
+
+  <div class="tagline">
+    Reserve a spot <span>·</span> 612-673-2100
+  </div>
+
+  <div class="cta-wrap">
+    <a href="tel:6126732100" class="cta-btn">
+      Reserve Your Spot
+      <span class="cta-arrow">→</span>
+    </a>
+  </div>
+
+</div>
+
+<!-- Bottom strip -->
+<div class="bottom-strip">
+  <div class="bottom-item">Frey KOA</div>
+  <div class="bottom-item"><a href="tel:6126732100">612-673-2100</a></div>
+  <div class="bottom-item">Minneapolis</div>
+</div>
+
+</body>
+</html>
