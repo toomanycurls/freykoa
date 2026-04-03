@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Owns Minneapolis — Frey KOA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:        #122448;
+  --navy-mid:    #1e3a6e;
+  --navy-light:  #2a4d8f;
+  --white:       #ffffff;
+  --off:         #f7f6f3;
+  --ink:         #1a1a1a;
+  --ink-2:       #4a4a4a;
+  --ink-3:       #888;
+  --rule:        #e0ddd6;
+  --accent:      #c8b560;
+  --mega:        #7a2515;
+  --mega-bg:     #fdf0ed;
+  --large:       #7a4f00;
+  --large-bg:    #fdf6e3;
+  --mid:         #0d4a7a;
+  --mid-bg:      #eaf3fc;
+  --small:       #1e5c1e;
+  --small-bg:    #edf7ed;
+  --port:        #555;
+  --port-bg:     #f2f1ef;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.site-nav {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-brand .dot { color: var(--accent); }
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  letter-spacing: .03em;
+  transition: color .15s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a.active { color: var(--accent); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: var(--navy);
+  padding: 56px 32px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255,255,255,0.012) 3px,
+    rgba(255,255,255,0.012) 4px
+  );
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 15% 50%, rgba(42,77,143,0.5) 0%, transparent 70%);
+}
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.header-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: .95;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  margin-bottom: 20px;
+}
+.header-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.header-desc {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+  line-height: 1.6;
+}
+.header-meta {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.meta-pill {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: .04em;
+  border: 0.5px solid rgba(255,255,255,0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ── MAIN CONTENT ── */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+/* ── METRICS STRIP ── */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.metric {
+  background: var(--white);
+  border: 0.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 16px 14px;
+}
+.metric-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.metric-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--ink);
+  line-height: 1;
+}
+.metric-sub {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* ── SECTION TITLES ── */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+.section-head h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.section-head .rule {
+  flex: 1;
+  height: 0.5px;
+  background: var(--rule);
+}
+
+/* ── TIER CHART ── */
+.tier-grid {
+  background: var(--white);
+  border: 0.5px solid var(--rule);
+  border-radius: 6px;
+  padding: 20px 20px 16px;
+  margin-bottom: 36px;
+}
+.tier-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 90px 90px;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--rule);
+}
+.tier-row:last-child { border-bottom: none; }
+.tier-label { font-size: 13px; color: var(--ink-2); }
+.bar-track { background: #f0ede6; border-radius: 3px; height: 8px; overflow: hidden; }
+.bar-fill { height: 8px; border-radius: 3px; }
+.tier-count { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink); text-align: right; }
+.tier-units { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-3); text-align: right; }
+
+/* ── TABLE CONTROLS ── */
+.table-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.table-controls input,
+.table-controls select {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 7px 12px;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s;
+}
+.table-controls input { flex: 1; min-width: 200px; }
+.table-controls input:focus,
+.table-controls select:focus { border-color: var(--navy-mid); }
+
+/* ── TABLE ── */
+.table-wrap {
+  background: var(--white);
+  border: 0.5px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: fixed;
+}
+thead th {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: #f5f4f1;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 0.5px solid var(--rule);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+thead th:hover { color: var(--ink); }
+thead th.sort-asc::after { content: ' ↑'; color: var(--navy-mid); }
+thead th.sort-desc::after { content: ' ↓'; color: var(--navy-mid); }
+tbody tr {
+  border-bottom: 0.5px solid var(--rule);
+  transition: background .1s;
+  cursor: pointer;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #faf9f7; }
+tbody tr.expanded { background: #f5f4f1; }
+td {
+  padding: 10px 12px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.col-rank  { width: 38px; color: var(--ink-3); font-size: 12px; text-align: center; }
+.col-owner { width: 200px; }
+.col-addr  { width: 200px; }
+.col-lic   { width: 72px; text-align: right; }
+.col-units { width: 72px; text-align: right; }
+.col-tier  { width: 84px; }
+.col-wards { width: 120px; }
+.col-exp   { width: 32px; text-align: center; }
+.owner-name { font-weight: 500; color: var(--ink); }
+.owner-addr { font-size: 12px; color: var(--ink-3); }
+.num-cell { font-family: 'DM Mono', monospace; font-weight: 500; }
+.num-muted { font-family: 'DM Mono', monospace; color: var(--ink-3); }
+.exp-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: color .1s, background .1s;
+}
+.exp-btn:hover { color: var(--ink); background: var(--rule); }
+.detail-row td {
+  background: #f8f7f5;
+  padding: 10px 12px 14px 52px;
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: normal;
+  line-height: 1.5;
+  border-top: none;
+}
+.detail-row { display: none; }
+.detail-row.open { display: table-row; }
+.detail-label { font-weight: 500; color: var(--ink); }
+.detail-line { margin-top: 4px; }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.b-mega  { background: var(--mega-bg);  color: var(--mega); }
+.b-large { background: var(--large-bg); color: var(--large); }
+.b-mid   { background: var(--mid-bg);   color: var(--mid); }
+.b-small { background: var(--small-bg); color: var(--small); }
+.b-port  { background: var(--port-bg);  color: var(--port); }
+
+/* ── FOOTER STRIP ── */
+.page-footer {
+  background: var(--navy);
+  padding: 24px 32px;
+  text-align: center;
+}
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: .05em;
+}
+
+.table-caption {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: right;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .tier-row { grid-template-columns: 110px 1fr 70px; }
+  .tier-units { display: none; }
+  .col-addr, .col-wards { display: none; }
+  .page-header { padding: 36px 20px 32px; }
+  .content { padding: 28px 16px 60px; }
+  .site-nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">
+    FREY <span class="dot">·</span> KOA
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rental-data.html" class="active">Rental Data</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Minneapolis, MN &nbsp;·&nbsp; January 2025</div>
+    <h1 class="header-title">Who Owns<br><em>Minneapolis</em></h1>
+    <p class="header-desc">Active rental license data, normalized and ranked by owner address — because some folks have more than a few spots reserved.</p>
+    <div class="header-meta">
+      <span class="meta-pill">23,689 active licenses</span>
+      <span class="meta-pill">Source: City of Minneapolis</span>
+      <span class="meta-pill">Normalized by owner address</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── CONTENT ── -->
+<main class="content">
+
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Total licenses</div>
+      <div class="metric-value">23,689</div>
+      <div class="metric-sub">Jan 2025 snapshot</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Unique owner clusters</div>
+      <div class="metric-value">~13.3k</div>
+      <div class="metric-sub">after normalization</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">10+ license owners</div>
+      <div class="metric-value">130</div>
+      <div class="metric-sub">hold 3,022 licenses</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Largest portfolio</div>
+      <div class="metric-value">277</div>
+      <div class="metric-sub">Minneapolis Public Housing</div>
+    </div>
+  </div>
+
+  <!-- Tier chart -->
+  <div class="section-head">
+    <h2>Concentration by tier</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="tier-grid" id="tier-chart"></div>
+
+  <!-- Table -->
+  <div class="section-head">
+    <h2>Top owners by license count</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="table-controls">
+    <input type="text" id="search" placeholder="Search owner name or address…" />
+    <select id="tier-filter">
+      <option value="">All tiers</option>
+      <option value="mega">Mega (50+)</option>
+      <option value="large">Large (20–49)</option>
+      <option value="mid">Mid (10–19)</option>
+      <option value="small">Small (5–9)</option>
+      <option value="port">Portfolio (2–4)</option>
+    </select>
+    <select id="sort-col">
+      <option value="licenses">Sort: licenses</option>
+      <option value="units">Sort: units</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-rank">#</th>
+          <th class="col-owner" id="th-owner">Owner</th>
+          <th class="col-addr">Owner address</th>
+          <th class="col-lic sort-desc" id="th-lic">Licenses</th>
+          <th class="col-units" id="th-units">Units</th>
+          <th class="col-tier">Tier</th>
+          <th class="col-wards">Wards</th>
+          <th class="col-exp"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="table-caption" id="caption"></div>
+
+</main>
+
+<footer class="page-footer">
+  <div class="footer-inner">
+    <div class="footer-note">Data: City of Minneapolis open data portal. Normalized for presentation. Not legal advice.</div>
+    <div class="footer-brand">FREY · KOA</div>
+  </div>
+</footer>
+
+<script>
+const DATA = [
+  {rank:1,name:"Minneapolis Public Housing",allNames:"MINNEAPOLIS PUBLIC HOUSING / TAMIKA BASKIN",addr:"1001 Washington Ave N, Minneapolis, MN",zip:"55401",licenses:277,units:2091,wards:"1–13",nbhds:"Citywide — all wards"},
+  {rank:2,name:"Kari Jacobsen",allNames:"KARI JACOBSEN",addr:"2709 Essex St SE, Minneapolis, MN",zip:"55414",licenses:222,units:270,wards:"1–6, 8–13",nbhds:"Armatage, Audubon Park, Beltrami, Bottineau, Central + more"},
+  {rank:3,name:"2400 Como Ave SE (LLC cluster)",allNames:"1028 7TH ST SE LLC / 1048 23RD AVE SE LLC / 1107 8TH ST SE LLC + 135 more LLCs",addr:"2400 Como Ave SE, Minneapolis, MN",zip:"55414",licenses:138,units:456,wards:"1, 2, 3, 10",nbhds:"Como, Marcy Holmes, Prospect Park, Whittier"},
+  {rank:4,name:"708 5th St SE (LLC cluster)",allNames:"1004 7TH ST SW LLC / 1115 6TH ST SE LLC / 1149 14TH AVE LLC + 96 more LLCs",addr:"708 5th St SE, Minneapolis, MN",zip:"55414",licenses:99,units:431,wards:"1, 2, 3, 4, 8",nbhds:"Audubon Park, Beltrami, Como, Lyndale, Marcy Holmes"},
+  {rank:5,name:"Bassett Creek Partners LP",allNames:"BASSETT CREEK PARTNERS LP / HERITAGE PARK PARTNERS LP / SUMNER FIELD PARTNERS LP + more",addr:"100 N Broadway, St. Louis, MO",zip:"63102",licenses:76,units:429,wards:"5",nbhds:"Near-North, Sumner-Glenwood"},
+  {rank:6,name:"J and M Homes II / My C Truong",allNames:"J AND M HOMES II LLC / MY C TRUONG",addr:"2400 Blaisdell Ave S #300, Minneapolis, MN",zip:"55404",licenses:73,units:112,wards:"1, 3, 4, 5, 6, 8, 9, 10, 12",nbhds:"Audubon Park, Beltrami, Bryant, Central, Cleveland + more"},
+  {rank:7,name:"1000 22nd St W (LLC cluster)",allNames:"1619 LLC / 2626 FREMONT LLC / CREEK TERRACE APARTMENTS LLC + 62 more",addr:"1000 22nd St W, Minneapolis, MN",zip:"55405",licenses:65,units:1533,wards:"1, 2, 6, 7, 8, 10, 11, 13",nbhds:"Armatage, Cedar-Isles-Dean, East Bde Maka Ska, East Harriet + more"},
+  {rank:8,name:"West Bank Community Dev Corp",allNames:"WEST BANK COMMUNITY DEV CORP",addr:"1808 Riverside Ave S Ste 201, Minneapolis, MN",zip:"55454",licenses:60,units:160,wards:"2, 6",nbhds:"Cedar Riverside"},
+  {rank:9,name:"338 2nd St NE cluster",allNames:"ANDREW LEVIN / DANIEL E PERKINS / KDDZ REAL ESTATE LLC / KLP REAL ESTATE LLC + more",addr:"338 2nd St NE #200, Minneapolis, MN",zip:"55413",licenses:52,units:141,wards:"1, 2, 3, 8, 10",nbhds:"Beltrami, Bottineau, Como, East Bde Maka Ska, East Isles"},
+  {rank:10,name:"Project for Pride in Living",allNames:"BARBARA MCCORMICK / MIKE LAFAVE / PROJECT FOR PRIDE IN LIVING / RICK DALLMEY + more",addr:"1035 Franklin Ave E, Minneapolis, MN",zip:"55404",licenses:45,units:556,wards:"2, 4, 5, 6, 8, 10",nbhds:"Bryant, Central, Cleveland, Como, Elliot Park + more"},
+  {rank:11,name:"Caroline Horton",allNames:"CAROLINE A HORTON / CAROLINE HORTON",addr:"901 3rd St N #150, Minneapolis, MN",zip:"55401",licenses:44,units:1055,wards:"5, 6, 7, 9",nbhds:"Downtown West, East Phillips, Elliot Park, Harrison, Loring Park"},
+  {rank:12,name:"Scott Fergus",allNames:"SCOTT FERGUS",addr:"5100 Edina Industrial Blvd Ste 215, Edina, MN",zip:"55439",licenses:41,units:41,wards:"1, 4, 5, 8, 12",nbhds:"Bryant, Cleveland, Folwell, Hawthorne, Howe"},
+  {rank:13,name:"Varpness Properties",allNames:"DUSTIN JAMES VARPNESS / JOHN VARPNESS / JULIA VARPNESS / VARPNESS PROPERTIES LLC",addr:"8161 Hidden Ct, Chanhassen, MN",zip:"55317",licenses:40,units:47,wards:"1, 4, 5, 8",nbhds:"Central, Cleveland, Folwell, Hawthorne, Holland"},
+  {rank:14,name:"Blake Bonjean cluster",allNames:"BLAKE BONJEAN / BONJEAN PROPERTIES III LLC / PB PARTNERS II / PB PARTNERS + more",addr:"10296 182nd St W, Lakeville, MN",zip:"55044",licenses:39,units:60,wards:"1, 2, 3, 6",nbhds:"Como, Marcy Holmes, Prospect Park, Seward"},
+  {rank:15,name:"Tim C Harmsen",allNames:"TIM C HARMSEN",addr:"74 Golden Lake Rd E, Circle Pines, MN",zip:"55014",licenses:36,units:112,wards:"2, 3",nbhds:"Marcy Holmes"},
+  {rank:16,name:"Jeffrey Kershner",allNames:"JEFFERY KERSHNER / JEFFREY KERHNER / JEFFREY KERSHNER",addr:"1270 Eagan Industrial Rd #160, Eagan, MN",zip:"55121",licenses:33,units:33,wards:"1, 2, 8, 9, 11, 12, 13",nbhds:"Armatage, Audubon Park, Bryant, Central, Como + more"},
+  {rank:17,name:"Mary Lagarde (Little Earth)",allNames:"MARY LAGARDE",addr:"Little Earth of United Tribes, Minneapolis, MN",zip:"55404",licenses:29,units:204,wards:"9",nbhds:"East Phillips"},
+  {rank:18,name:"James Swartwood / Blackwood Inv.",allNames:"BLACKWOOD INVESTMENT INC / JAMES SMARTWOOD / JAMES SWARTWOOD / JAMES E SWARTWOOD + more",addr:"5537 Dupont Ave S, Minneapolis, MN",zip:"55419",licenses:29,units:36,wards:"4, 5, 6, 8, 9, 10, 11, 12",nbhds:"Central, Hawthorne, Howe, Jordan, Lyndale + more"},
+  {rank:19,name:"Douglas Wahl / Richard Edlich",allNames:"DOUGLAS A WAHL / RICHARD EDLICH",addr:"1845 Stinson Pkwy, Minneapolis, MN",zip:"55418",licenses:28,units:28,wards:"1, 3, 4",nbhds:"Audubon Park, Cleveland, Holland, Lind-Bohanon, Logan Park"},
+  {rank:20,name:"CHDC / Richard Brustad",allNames:"CHDC BOSSEN LLC / CHDC ZINMASTER LLC / ELIZABETH FLANNERY / RICHARD BRUSTAD + more",addr:"614 1st St N #100, Minneapolis, MN",zip:"55401",licenses:27,units:232,wards:"5, 6, 9, 10, 11",nbhds:"Central, North Loop, Phillips West, Wenonah, Whittier"},
+  {rank:21,name:"Stevens Community Assn",allNames:"STEVENS COMM ASSN / STEVENS COMM ASSTS",addr:"128 18th St E, Minneapolis, MN",zip:"55403",licenses:20,units:543,wards:"6, 7, 10",nbhds:"Steven's Square-Loring Heights, Whittier"},
+  {rank:22,name:"Pro Operam / Ross Properties",allNames:"GREGORY J PROSCH / HERMAN S ROSS / PRO OPERAM SUB I LLC / ROSS PROPERTIES + more",addr:"3570 Lexington Ave N #202, Shoreview, MN",zip:"55126",licenses:26,units:44,wards:"1, 2, 3, 4, 5, 8, 9, 10, 11, 12",nbhds:"Beltrami, Bottineau, Central, Cooper, Corcoran + more"},
+  {rank:23,name:"Kevin Motarjemi / Distinguished Prop.",allNames:"DISTINGUISHED PROPERTIES LLC / EVEREST HOLDINGS LLC / KEVIN MOTARJEMI",addr:"7760 France Ave S Suite 1100, Bloomington, MN",zip:"55435",licenses:26,units:34,wards:"4, 5, 6, 8, 9, 11",nbhds:"Central, Folwell, Hawthorne, Jordan, King Field"},
+  {rank:24,name:"Scot Pekarek",allNames:"SCOT A PEKAREK",addr:"17736 Old Excelsior Blvd, Minnetonka, MN",zip:"55435",licenses:22,units:27,wards:"1, 2, 3, 4, 5, 8, 9, 10, 12",nbhds:"Central, Como, Holland, Jordan, King Field"},
+  {rank:25,name:"Matthew Forster / CCF3 LLC",allNames:"CCF3 LLC / MATTHEW FORSTER",addr:"7801 E Bush Lake Rd Ste 430, Edina, MN",zip:"55439",licenses:25,units:25,wards:"4, 5",nbhds:"Folwell, Hawthorne, Jordan, Lind-Bohanon, McKinley"},
+  {rank:26,name:"Lenny Frolov",allNames:"LENNY FROLOV",addr:"7040 Lakeland Ave N Ste 112, Brooklyn Park, MN",zip:"55428",licenses:25,units:25,wards:"4, 5",nbhds:"Folwell, Hawthorne, Jordan, McKinley, Webber-Camden"},
+  {rank:27,name:"David McGuire",allNames:"DAVID C MCGUIRE",addr:"21551 Vergus Ave S, Prior Lake, MN",zip:"55372",licenses:22,units:156,wards:"11",nbhds:"Windom"},
+  {rank:28,name:"Daniel Gelb",allNames:"DANIEL L GELB",addr:"7100 Northland Cir #400, Brooklyn Park, MN",zip:"55428",licenses:22,units:27,wards:"4, 5",nbhds:"Cleveland, Folwell, Hawthorne, Jordan, Lind-Bohanon"},
+  {rank:29,name:"Innovative Properties (2245 38th)",allNames:"3200 PILLSBURY AVE S LLC / BLAISDELL MANOR LLC / INNOVATIVE PROPERTIES / JEFF OLSON + more",addr:"2245 38th St E, Minneapolis, MN",zip:"55407",licenses:22,units:354,wards:"8, 9, 10, 11, 12, 13",nbhds:"East Harriet, Hiawatha, Howe, King Field, Longfellow"},
+  {rank:30,name:"CAG Minnesota Fund I & II",allNames:"CAG MINNESOTA FUND I LLC / CAG MINNESOTA FUND II LLC",addr:"5100 Edina Industrial Blvd Suite 210, Minneapolis, MN",zip:"55439",licenses:21,units:21,wards:"4, 5, 9, 12",nbhds:"Folwell, Jordan, Lind-Bohanon, McKinley, Midtown Phillips"},
+  {rank:31,name:"Asalesol Young",allNames:"ASALESOL YOUNG",addr:"927 W Broadway Ave Suite 301, Minneapolis, MN",zip:"55411",licenses:21,units:54,wards:"5, 6, 9",nbhds:"Central, Hawthorne, Midtown Phillips, Near-North, Ventura Village"},
+  {rank:32,name:"Todd Gorelick / MNF III (Charlotte NC)",allNames:"MNF III ACQUISITIONS LLC / MNSF T2 SPE LLC / TODD GORELICK",addr:"6836 Morrison Blvd Ste 300, Charlotte, NC",zip:"28211",licenses:20,units:20,wards:"1, 4, 5",nbhds:"Bottineau, Columbia Park, Folwell, Lind-Bohanon, McKinley"},
+  {rank:33,name:"My Cong Truong",allNames:"MY CONG TRUONG / MY C TROUNG / MY C TRUONG",addr:"2400 Blaisdell Ave #B2, Minneapolis, MN",zip:"55404",licenses:19,units:23,wards:"4, 5, 9, 10",nbhds:"Cleveland, Folwell, Harrison, Hawthorne, Jordan"},
+  {rank:34,name:"Nicholas Puzak / Cardinal Properties",allNames:"CARDINAL PROPERTIES LLC / LIVE CLOSE LLC / LIVE CLOSE II LLC / NICHOLAS PUZAK + more",addr:"1415 5th St SE, Minneapolis, MN",zip:"55414",licenses:19,units:261,wards:"1, 2, 3, 7",nbhds:"Como, Lowry Hill, Marcy Holmes, Marshall Terrace, Prospect Park"},
+  {rank:35,name:"Kara Silva",allNames:"KARA SILVA",addr:"708 5th St SE, Minneapolis, MN",zip:"55414",licenses:19,units:247,wards:"1, 2, 3, 6",nbhds:"Como, Marcy Holmes, Marshall Terrace, Prospect Park, Seward"},
+  {rank:36,name:"George Sherman",allNames:"GEORGE E SHERMAN / GEORGE SHERMAN / SA MIDTOWN EXCHANGE GEORGE E SHERMAN",addr:"233 Park Ave S #201, Minneapolis, MN",zip:"55415",licenses:18,units:2112,wards:"1, 3, 6, 7, 9, 12",nbhds:"Bottineau, Cedar Riverside, East Phillips, Holland, Howe"},
+  {rank:37,name:"Copenhagen-Hansen Family LLLP",allNames:"COPENHAGEN-HANSEN FAMILY LLLP / DIANE HANSEN / WILLIAM HANSEN + more",addr:"26 Oak Grove St #A2, Minneapolis, MN",zip:"55403",licenses:18,units:380,wards:"6, 7, 8, 10",nbhds:"Elliot Park, Loring Park, Lyndale, Steven's Square, Whittier"},
+  {rank:38,name:"3301 Nicollet LP",allNames:"3301 NICOLLET LP / BARBARA JEANETTA / HERB FREY / JESSIE HENDEL + more",addr:"2309 Nicollet Ave, Minneapolis, MN",zip:"55404",licenses:18,units:326,wards:"4, 5, 6, 8, 9, 11",nbhds:"Central, Cleveland, Elliot Park, Folwell, Jordan"},
+  {rank:39,name:"Philip Chan",allNames:"PHILIP CHAN",addr:"3120 Hennepin Ave, Minneapolis, MN",zip:"55407",licenses:18,units:31,wards:"1, 3",nbhds:"Audubon Park, Holland, Logan Park, Northeast Park, Sheridan"},
+  {rank:40,name:"Jesse Mausser / Realty Pros",allNames:"JESSE MAUSSER / REALTY PROS LLC / THOMAS P WOLFE / TOM P WOLFE",addr:"34 13th Ave NE Ste B002E, Minneapolis, MN",zip:"55413",licenses:18,units:18,wards:"4, 5, 11",nbhds:"Cleveland, Folwell, Jordan, Lind-Bohanon, Page"},
+  {rank:41,name:"Duane Chilgren",allNames:"DUANE A CHILGREN / DUANE ALLEN CHILGREN",addr:"714 Torchwood Dr, New Brighton, MN",zip:"55112",licenses:17,units:75,wards:"1, 2, 3",nbhds:"Como, Marcy Holmes"},
+  {rank:42,name:"Ross Lumley",allNames:"ROSS LUMLEY / ROSS G LUMLEY",addr:"2901 S Wayzata Blvd Ste 100, Minneapolis, MN",zip:"55405",licenses:17,units:72,wards:"1, 3, 5, 8, 10",nbhds:"East Bde Maka Ska, Harrison, Holland, King Field, Lowry Hill East"},
+  {rank:43,name:"Sam Steadman",allNames:"SAM STEADMAN",addr:"821 Douglas Ave Ste 400, Minneapolis, MN",zip:"55403",licenses:17,units:52,wards:"5, 10",nbhds:"Harrison, Lowry Hill East, Whittier"},
+  {rank:44,name:"Laurence Reardon / Reardon Properties",allNames:"LAURENCE V REARDON / REARDON PROPERTIES LLC",addr:"3080 North Shore Drive, Wayzata, MN",zip:"55391",licenses:17,units:79,wards:"7, 8, 10, 13",nbhds:"East Bde Maka Ska, East Harriet, Kenwood, Lowry Hill, Lowry Hill East"},
+  {rank:45,name:"Urban Homeworks",allNames:"BEN POST / CHAD SCHWITTERS / URBAN HOMEWORKS",addr:"2015 Emerson Avenue N, Minneapolis, MN",zip:"55411",licenses:17,units:66,wards:"4, 5, 9, 10",nbhds:"Central, Hawthorne, Jordan, McKinley, Near-North"},
+  {rank:46,name:"Keith Malmer / Jaguar Capital",allNames:"JAGUAR CAPITAL LLC / KEITH D MALMER",addr:"523 Quinmore Ave N, Lakeland, MN",zip:"55043",licenses:17,units:19,wards:"4, 5, 10",nbhds:"Cleveland, Folwell, Hawthorne, Jordan, Lind-Bohanon"},
+  {rank:47,name:"Neil Rodrigue / Paul Miller",allNames:"NEIL L RODRIGUE / NEIL RODRIGUE / PAUL MILLER / PAUL W MILLER",addr:"4835 Lyndale Avenue N, Minneapolis, MN",zip:"55430",licenses:17,units:17,wards:"4",nbhds:"Lind-Bohanon, McKinley, Shingle Creek"},
+  {rank:48,name:"David Gallogly / Galatians LLC",allNames:"DAVID GALLOGLY / DAVID L GALLOGLY / GALATIANS LLC / HAWKEYE REAL ESTATE INVESTMENT + more",addr:"900 Broadway Ave, Saint Paul Park, MN",zip:"55071",licenses:17,units:20,wards:"4, 5",nbhds:"Cleveland, Folwell, Hawthorne, Jordan, McKinley"},
+  {rank:49,name:"Andis Skromanis / Outlook Estates",allNames:"ANDIS SKROMANIS / OUTLOOK ESTATES LLC",addr:"5212 Highland Road, Minnetonka, MN",zip:"55345",licenses:23,units:39,wards:"4, 5",nbhds:"Cleveland, Folwell, Jordan, Lind-Bohanon, McKinley"},
+  {rank:50,name:"Neil Esterkin / Richard Antone",allNames:"NEIL M ESTERKIN / RICHARD ANTONE / RICHARD D ANTONE",addr:"1000 Franklin Ave W, Minneapolis, MN",zip:"55405",licenses:23,units:39,wards:"7, 8, 10",nbhds:"Kenwood, King Field, Lowry Hill East, Lyndale, South Uptown"},
+];
+
+const TIERS = [
+  {label:"Mega (50+)",    licenses:1062, units:5623,  color:"#c8543a", key:"mega"},
+  {label:"Large (20–49)", licenses:709,  units:3822,  color:"#b07a1a", key:"large"},
+  {label:"Mid (10–19)",   licenses:1251, units:12626, color:"#2a6aaa", key:"mid"},
+  {label:"Small (5–9)",   licenses:2125, units:12428, color:"#2e7c2e", key:"small"},
+  {label:"Portfolio (2–4)",licenses:6228,units:37097, color:"#999",    key:"port"},
+];
+
+function getTier(n){ return n>=50?"mega":n>=20?"large":n>=10?"mid":n>=5?"small":"port"; }
+function badgeHtml(t){ return `<span class="badge b-${t}">${{mega:"Mega",large:"Large",mid:"Mid",small:"Small",port:"Portfolio"}[t]}</span>`; }
+
+const maxL = Math.max(...TIERS.map(t=>t.licenses));
+const tc = document.getElementById('tier-chart');
+TIERS.forEach(t=>{
+  tc.innerHTML += `<div class="tier-row">
+    <div class="tier-label">${t.label}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${Math.round(t.licenses/maxL*100)}%;background:${t.color}"></div></div>
+    <div class="tier-count">${t.licenses.toLocaleString()} lic.</div>
+    <div class="tier-units">${t.units.toLocaleString()} units</div>
+  </div>`;
+});
+
+let sortField = 'licenses', sortDir = -1;
+
+function render(){
+  const q  = document.getElementById('search').value.toLowerCase();
+  const tf = document.getElementById('tier-filter').value;
+  const sf = document.getElementById('sort-col').value;
+
+  let rows = DATA.filter(r=>{
+    if(tf && getTier(r.licenses)!==tf) return false;
+    if(q && !r.name.toLowerCase().includes(q) &&
+           !r.addr.toLowerCase().includes(q) &&
+           !r.allNames.toLowerCase().includes(q)) return false;
+    return true;
+  }).sort((a,b)=>sortDir*(b[sf]-a[sf]));
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML='';
+  rows.forEach((r,i)=>{
+    const tier = getTier(r.licenses);
+    const rowId = `row-${i}`;
+    const detId = `det-${i}`;
+    const tr = document.createElement('tr');
+    tr.id = rowId;
+    tr.innerHTML = `
+      <td class="col-rank">${r.rank}</td>
+      <td class="col-owner"><div class="owner-name">${r.name}</div></td>
+      <td class="col-addr"><div class="owner-addr">${r.addr}</div></td>
+      <td class="col-lic num-cell" style="text-align:right">${r.licenses}</td>
+      <td class="col-units num-muted" style="text-align:right">${r.units.toLocaleString()}</td>
+      <td class="col-tier">${badgeHtml(tier)}</td>
+      <td class="col-wards" style="font-size:12px;color:var(--ink-3)">${r.wards}</td>
+      <td class="col-exp"><button class="exp-btn" data-det="${detId}" aria-label="expand">+</button></td>`;
+    tbody.appendChild(tr);
+    const dtr = document.createElement('tr');
+    dtr.className='detail-row';
+    dtr.id=detId;
+    dtr.innerHTML=`<td colspan="8">
+      <span class="detail-label">All registered names:</span>
+      <div class="detail-line">${r.allNames}</div>
+      <div class="detail-line" style="margin-top:6px"><span class="detail-label">Neighborhoods:</span> ${r.nbhds}</div>
+    </td>`;
+    tbody.appendChild(dtr);
+  });
+
+  document.getElementById('caption').textContent = `Showing ${rows.length} of ${DATA.length} owners`;
+
+  tbody.querySelectorAll('.exp-btn').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+      const det = document.getElementById(btn.dataset.det);
+      const open = det.classList.toggle('open');
+      btn.textContent = open ? '−' : '+';
+      btn.closest('tr').classList.toggle('expanded', open);
+    });
+  });
+}
+
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('tier-filter').addEventListener('change', render);
+document.getElementById('sort-col').addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
