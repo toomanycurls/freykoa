@@ -320,7 +320,24 @@
   <div class="eyebrow">Minneapolis, Minnesota</div>
   <div class="coming-soon">Coming Soon</div>
 </div>
-
+<!-- Navigation --> 
+ <nav style="
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:flex-end; align-items:center;
+  padding:0 32px; height:44px;
+  background:rgba(18,36,72,0.7); backdrop-filter:blur(8px);
+  border-bottom:0.5px solid rgba(255,255,255,0.1);
+">
+  <a href="rental-data.html" style="
+    font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:rgba(255,255,255,0.55); text-decoration:none;
+    transition:color .15s;
+  "
+  onmouseover="this.style.color='rgba(255,255,255,0.9)'"
+  onmouseout="this.style.color='rgba(255,255,255,0.55)'"
+  >Rental Data →</a>
+</nav>
 <!-- Background atmosphere -->
 <div class="bg-layer">
   <div class="bg-corner tl"></div>
