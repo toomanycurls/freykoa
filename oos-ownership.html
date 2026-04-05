@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Out-of-State Ownership — Frey KOA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Lora:ital,wght@0,400;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#122448;--navy-mid:#1e3a6e;--white:#ffffff;
+  --off:#f7f6f3;--ink:#1a1a1a;--ink-2:#4a4a4a;--ink-3:#888;
+  --rule:#e0ddd6;--gold:#c8b560;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--ink);min-height:100vh}
+
+/* NAV */
+.site-nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:#fff;text-decoration:none;letter-spacing:.04em}
+.nav-brand .dot{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:.03em;transition:color .15s}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+
+/* HEADER */
+.page-header{background:var(--navy);padding:52px 32px 44px;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.012) 3px,rgba(255,255,255,0.012) 4px)}
+.page-header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 15% 50%,rgba(42,77,143,0.5) 0%,transparent 70%)}
+.header-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.header-eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.header-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(36px,5vw,60px);line-height:.95;color:#fff;text-transform:uppercase;letter-spacing:.01em;margin-bottom:16px}
+.header-title em{font-style:normal;color:var(--gold)}
+.header-desc{font-family:'Lora',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.65}
+.header-meta{margin-top:20px;display:flex;gap:14px;flex-wrap:wrap}
+.meta-pill{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.04em;border:0.5px solid rgba(255,255,255,0.18);padding:4px 12px;border-radius:20px}
+
+/* CONTENT */
+.content{max-width:960px;margin:0 auto;padding:32px 32px 72px}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:32px}
+.metric{background:var(--white);border:0.5px solid var(--rule);border-radius:6px;padding:16px 14px 12px}
+.metric-label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.metric-value{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;color:var(--ink);line-height:1}
+.metric-sub{font-size:11px;color:var(--ink-3);margin-top:3px}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+.section-head h2{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.section-head .rule{flex:1;height:0.5px;background:var(--rule)}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:0.5px solid var(--rule);margin-bottom:16px}
+.tab{font-size:13px;font-weight:500;padding:7px 16px;cursor:pointer;color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;background:var(--white);border:0.5px solid var(--rule);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{font-size:11px;font-weight:500;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;padding:9px 12px;text-align:left;border-bottom:0.5px solid var(--rule);cursor:pointer;user-select:none;background:#faf9f7;white-space:nowrap}
+thead th:hover{color:var(--ink)}
+thead th.asc::after{content:' ↑';opacity:.7}
+thead th.desc::after{content:' ↓';opacity:.7}
+tbody tr{border-bottom:0.5px solid var(--rule)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#faf9f7}
+td{padding:9px 12px;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mono{font-family:'DM Mono',monospace;font-size:12px}
+.muted{color:var(--ink-3);font-size:12px}
+.danger{color:#b91c1c;font-weight:500}
+.flag{font-size:10px;font-weight:600;color:#b91c1c;background:#fef2f2;border:0.5px solid #fca5a5;border-radius:3px;padding:1px 4px;margin-left:5px;vertical-align:middle}
+.bar-bg{display:inline-block;background:#e8e5de;border-radius:2px;height:6px;width:90px;vertical-align:middle;overflow:hidden}
+.bar-fill{height:6px;border-radius:2px;background:#2563eb}
+.caption{font-size:11px;color:var(--ink-3);margin-top:10px;text-align:right}
+
+/* FOOTER */
+.page-footer{background:var(--navy);padding:22px 32px}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-note{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;color:rgba(255,255,255,0.5);letter-spacing:.05em}
+
+@media(max-width:680px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .page-header{padding:36px 20px 32px}
+  .content{padding:24px 16px 56px}
+  .site-nav{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">FREY <span class="dot">·</span> KOA</a>
+  <ul class="nav-links">
+    <li><a href="rental-data.html">Rental data</a></li>
+    <li><a href="ward-map.html">Ward map</a></li>
+    <li><a href="owner-map.html">Owner map</a></li>
+    <li><a href="oos-ownership.html" class="active">Out-of-state</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Minneapolis, MN &nbsp;·&nbsp; January 2026</div>
+    <h1 class="header-title">Out-of-state <em>ownership</em></h1>
+    <p class="header-desc">Nearly one in ten Minneapolis rental licenses is held by an owner registered outside Minnesota — 39 states and D.C. represented.</p>
+    <div class="header-meta">
+      <span class="meta-pill">2,151 out-of-state licenses</span>
+      <span class="meta-pill">23,550 units</span>
+      <span class="meta-pill">39 states + D.C.</span>
+      <span class="meta-pill">Source: City of Minneapolis</span>
+    </div>
+  </div>
+</header>
+
+<main class="content">
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Out-of-state licenses</div>
+      <div class="metric-value">2,151</div>
+      <div class="metric-sub">9.2% of all licenses</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Out-of-state units</div>
+      <div class="metric-value">23,550</div>
+      <div class="metric-sub">~19% of licensed units</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">States represented</div>
+      <div class="metric-value">39 + D.C.</div>
+      <div class="metric-sub">with 5+ licenses each</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Unique OOS owners</div>
+      <div class="metric-value">1,714</div>
+      <div class="metric-sub">by address cluster</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>Breakdown</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-state" onclick="showTab('state')">By state</div>
+    <div class="tab" id="tab-owner" onclick="showTab('owner')">Top individual owners</div>
+  </div>
+
+  <div id="panel-state">
+    <div class="tbl-wrap">
+      <table id="state-table">
+        <thead>
+          <tr>
+            <th style="width:170px" data-col="state" data-type="str">State</th>
+            <th style="width:82px;text-align:right" data-col="licenses" data-type="num" class="desc">Licenses</th>
+            <th style="width:82px;text-align:right" data-col="units" data-type="num">Units</th>
+            <th style="width:74px;text-align:right" data-col="upl" data-type="num">Units / lic</th>
+            <th style="width:90px;text-align:right" data-col="owners" data-type="num">Owners</th>
+            <th style="width:130px">Share of OOS</th>
+          </tr>
+        </thead>
+        <tbody id="state-body"></tbody>
+      </table>
+    </div>
+    <p class="caption">Units/lic above 20 highlighted — indicates concentrated apartment ownership. Click any column to sort.</p>
+  </div>
+
+  <div id="panel-owner" style="display:none">
+    <div class="tbl-wrap">
+      <table id="owner-table">
+        <thead>
+          <tr>
+            <th style="width:220px" data-col="name" data-type="str">Owner</th>
+            <th style="width:54px" data-col="state" data-type="str">State</th>
+            <th style="width:78px;text-align:right" data-col="licenses" data-type="num" class="desc">Licenses</th>
+            <th style="width:78px;text-align:right" data-col="units" data-type="num">Units</th>
+            <th style="width:64px;text-align:right" data-col="upl" data-type="num">U/L</th>
+            <th style="width:80px">Wards</th>
+            <th style="width:140px">Top neighborhood</th>
+          </tr>
+        </thead>
+        <tbody id="owner-body"></tbody>
+      </table>
+    </div>
+    <p class="caption">Top out-of-state owner clusters. U/L = units per license. Click any column to sort.</p>
+  </div>
+
+</main>
+
+<footer class="page-footer">
+  <div class="footer-inner">
+    <div class="footer-note">Data: City of Minneapolis open data portal, January 2026. Not legal advice.</div>
+    <div class="footer-brand">FREY · KOA</div>
+  </div>
+</footer>
+
+<script>
+const STATE_DATA=[
+  {state:'California',abbr:'CA',licenses:429,units:2798,upl:6.5,owners:350},
+  {state:'Wisconsin',abbr:'WI',licenses:164,units:450,upl:2.7,owners:132},
+  {state:'Illinois',abbr:'IL',licenses:133,units:4440,upl:33.4,owners:92},
+  {state:'Florida',abbr:'FL',licenses:126,units:243,upl:1.9,owners:97},
+  {state:'Texas',abbr:'TX',licenses:111,units:1940,upl:17.5,owners:86},
+  {state:'New York',abbr:'NY',licenses:108,units:1107,upl:10.2,owners:95},
+  {state:'Colorado',abbr:'CO',licenses:95,units:1733,upl:18.2,owners:80},
+  {state:'Washington',abbr:'WA',licenses:91,units:4072,upl:44.7,owners:68},
+  {state:'Missouri',abbr:'MO',licenses:88,units:446,upl:5.1,owners:13},
+  {state:'North Carolina',abbr:'NC',licenses:83,units:109,upl:1.3,owners:40},
+  {state:'Arizona',abbr:'AZ',licenses:51,units:70,upl:1.4,owners:46},
+  {state:'Georgia',abbr:'GA',licenses:47,units:680,upl:14.5,owners:32},
+  {state:'Virginia',abbr:'VA',licenses:39,units:362,upl:9.3,owners:27},
+  {state:'Nevada',abbr:'NV',licenses:37,units:52,upl:1.4,owners:22},
+  {state:'North Dakota',abbr:'ND',licenses:37,units:288,upl:7.8,owners:30},
+  {state:'Michigan',abbr:'MI',licenses:34,units:363,upl:10.7,owners:25},
+  {state:'Oregon',abbr:'OR',licenses:34,units:42,upl:1.2,owners:30},
+  {state:'Iowa',abbr:'IA',licenses:33,units:41,upl:1.2,owners:33},
+  {state:'South Dakota',abbr:'SD',licenses:33,units:42,upl:1.3,owners:22},
+  {state:'New Jersey',abbr:'NJ',licenses:28,units:435,upl:15.5,owners:27},
+  {state:'Massachusetts',abbr:'MA',licenses:24,units:192,upl:8.0,owners:24},
+  {state:'Ohio',abbr:'OH',licenses:22,units:273,upl:12.4,owners:17},
+  {state:'Maryland',abbr:'MD',licenses:20,units:31,upl:1.6,owners:20},
+  {state:'South Carolina',abbr:'SC',licenses:19,units:1030,upl:54.2,owners:12},
+  {state:'Pennsylvania',abbr:'PA',licenses:17,units:23,upl:1.4,owners:16},
+  {state:'Kansas',abbr:'KS',licenses:15,units:450,upl:30.0,owners:14},
+  {state:'Utah',abbr:'UT',licenses:15,units:18,upl:1.2,owners:13},
+  {state:'Hawaii',abbr:'HI',licenses:12,units:18,upl:1.5,owners:12},
+  {state:'Tennessee',abbr:'TN',licenses:12,units:327,upl:27.2,owners:12},
+  {state:'Montana',abbr:'MT',licenses:12,units:19,upl:1.6,owners:9},
+  {state:'Indiana',abbr:'IN',licenses:11,units:12,upl:1.1,owners:10},
+  {state:'Washington D.C.',abbr:'DC',licenses:10,units:11,upl:1.1,owners:10},
+  {state:'Connecticut',abbr:'CT',licenses:9,units:218,upl:24.2,owners:9},
+  {state:'Oklahoma',abbr:'OK',licenses:8,units:9,upl:1.1,owners:7},
+  {state:'Nebraska',abbr:'NE',licenses:8,units:213,upl:26.6,owners:7},
+  {state:'Kentucky',abbr:'KY',licenses:7,units:7,upl:1.0,owners:4},
+  {state:'Alaska',abbr:'AK',licenses:5,units:7,upl:1.4,owners:5},
+  {state:'Idaho',abbr:'ID',licenses:5,units:9,upl:1.8,owners:4},
+  {state:'New Hampshire',abbr:'NH',licenses:5,units:6,upl:1.2,owners:5},
+];
+
+const OWNER_DATA=[
+  {name:'Bassett Creek Partners LP',state:'MO',licenses:76,units:429,upl:5.6,wards:'5',nbhd:'Near-North, Sumner-Glenwood',llc:true},
+  {name:'MN Lakehaus / W. Dean Weidner',state:'WA',licenses:8,units:1489,upl:186.1,wards:'3, 7, 10',nbhd:'Cedar-Isles-Dean, Downtown',llc:true},
+  {name:'MN 4Marq / Blue & Lime Apts',state:'WA',licenses:10,units:1014,upl:101.4,wards:'3, 7, 10',nbhd:'Downtown West / East',llc:true},
+  {name:'Paxon Apartments (Chicago)',state:'IL',licenses:5,units:549,upl:109.8,wards:'3',nbhd:'North Loop',llc:true},
+  {name:'Cedar Duffey / Samoylovich',state:'IL',licenses:6,units:389,upl:64.8,wards:'3',nbhd:'North Loop',llc:true},
+  {name:'Robert Sekula (Chicago)',state:'IL',licenses:10,units:324,upl:32.4,wards:'7, 10',nbhd:'Loring Park, Whittier',llc:false},
+  {name:'MNF III / Todd Gorelick',state:'NC',licenses:20,units:20,upl:1.0,wards:'1, 4, 5',nbhd:'Folwell, Bottineau',llc:true},
+  {name:'Marc Silverstein (Charlotte)',state:'NC',licenses:12,units:12,upl:1.0,wards:'1, 8, 12',nbhd:'Bryant, Columbia Park',llc:true},
+  {name:'Geri Williams (Smyrna GA)',state:'GA',licenses:13,units:14,upl:1.1,wards:'4, 5',nbhd:'Folwell, Hawthorne',llc:false},
+  {name:'Greenway Apartments (Irvine CA)',state:'CA',licenses:8,units:174,upl:21.8,wards:'10',nbhd:'Whittier',llc:true},
+  {name:'HPA II Borrower (Plano TX)',state:'TX',licenses:11,units:11,upl:1.0,wards:'1, 4, 5, 11, 12',nbhd:'Cleveland, Armatage',llc:true},
+  {name:'Carl Nicolls (Franktown CO)',state:'CO',licenses:8,units:144,upl:18.0,wards:'11',nbhd:'Windom',llc:false},
+  {name:'LV LLC cluster (Las Vegas)',state:'NV',licenses:10,units:17,upl:1.7,wards:'4, 5',nbhd:'Jordan, Hawthorne',llc:true},
+  {name:'VA Trust cluster (Chester VA)',state:'VA',licenses:9,units:18,upl:2.0,wards:'4, 5, 9',nbhd:'Jordan, Hawthorne',llc:true},
+  {name:'Bridge SFR IV (Charlotte)',state:'NC',licenses:6,units:6,upl:1.0,wards:'4',nbhd:'Cleveland, Folwell',llc:true},
+  {name:'William Arrigoni (New Richmond)',state:'WI',licenses:6,units:115,upl:19.2,wards:'1,3,4,5,10',nbhd:'Central, Lind-Bohanon',llc:false},
+  {name:'Arik Lasky (Sherman Oaks CA)',state:'CA',licenses:6,units:50,upl:8.3,wards:'1,2,7,9,10',nbhd:'Como, Holland',llc:false},
+  {name:'Adrian Jimenez (Odessa FL)',state:'FL',licenses:6,units:9,upl:1.5,wards:'4,5,8,9',nbhd:'Jordan, McKinley',llc:true},
+  {name:'John Joyce (Beachwood OH)',state:'OH',licenses:5,units:16,upl:3.2,wards:'3',nbhd:'St. Anthony East',llc:false},
+  {name:'Xiuqi Cao (New York)',state:'NY',licenses:5,units:20,upl:4.0,wards:'10',nbhd:'Whittier',llc:false},
+];
+
+const maxLic=Math.max(...STATE_DATA.map(d=>d.licenses));
+let stateSortCol='licenses',stateSortDir=-1;
+let ownerSortCol='licenses',ownerSortDir=-1;
+
+function renderStates(){
+  const rows=[...STATE_DATA].sort((a,b)=>{
+    const av=a[stateSortCol],bv=b[stateSortCol];
+    if(typeof av==='string') return stateSortDir*av.localeCompare(bv);
+    return stateSortDir*(bv-av);
+  });
+  const tbody=document.getElementById('state-body');
+  tbody.innerHTML='';
+  rows.forEach(r=>{
+    const pct=Math.round(r.licenses/maxLic*100);
+    const hi=r.upl>20;
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><strong>${r.state}</strong> <span class="muted">${r.abbr}</span></td>
+      <td class="mono" style="text-align:right">${r.licenses}</td>
+      <td class="mono" style="text-align:right">${r.units.toLocaleString()}</td>
+      <td class="mono${hi?' danger':''}" style="text-align:right">${r.upl.toFixed(1)}</td>
+      <td class="mono" style="text-align:right">${r.owners}</td>
+      <td><span class="bar-bg"><span class="bar-fill" style="width:${pct}%"></span></span></td>`;
+    tbody.appendChild(tr);
+  });
+  document.querySelectorAll('#state-table thead th').forEach(th=>{
+    th.classList.remove('asc','desc');
+    if(th.dataset.col===stateSortCol) th.classList.add(stateSortDir===-1?'desc':'asc');
+  });
+}
+
+function renderOwners(){
+  const rows=[...OWNER_DATA].sort((a,b)=>{
+    const av=a[ownerSortCol],bv=b[ownerSortCol];
+    if(typeof av==='string') return ownerSortDir*av.localeCompare(bv);
+    return ownerSortDir*(bv-av);
+  });
+  const tbody=document.getElementById('owner-body');
+  tbody.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="font-weight:500;font-size:12px;white-space:normal;line-height:1.4">${r.name}${r.llc?'<span class="flag">LLC</span>':''}</td>
+      <td class="mono">${r.state}</td>
+      <td class="mono" style="text-align:right">${r.licenses}</td>
+      <td class="mono" style="text-align:right">${r.units.toLocaleString()}</td>
+      <td class="mono${r.upl>20?' danger':''}" style="text-align:right">${r.upl.toFixed(1)}</td>
+      <td class="muted" style="font-size:11px">${r.wards}</td>
+      <td class="muted" style="font-size:11px;white-space:normal;line-height:1.4">${r.nbhd}</td>`;
+    tbody.appendChild(tr);
+  });
+  document.querySelectorAll('#owner-table thead th').forEach(th=>{
+    th.classList.remove('asc','desc');
+    if(th.dataset.col===ownerSortCol) th.classList.add(ownerSortDir===-1?'desc':'asc');
+  });
+}
+
+document.querySelectorAll('#state-table thead th[data-col]').forEach(th=>{
+  th.addEventListener('click',()=>{
+    if(stateSortCol===th.dataset.col) stateSortDir*=-1;
+    else{stateSortCol=th.dataset.col;stateSortDir=th.dataset.type==='num'?-1:1;}
+    renderStates();
+  });
+});
+document.querySelectorAll('#owner-table thead th[data-col]').forEach(th=>{
+  th.addEventListener('click',()=>{
+    if(ownerSortCol===th.dataset.col) ownerSortDir*=-1;
+    else{ownerSortCol=th.dataset.col;ownerSortDir=th.dataset.type==='num'?-1:1;}
+    renderOwners();
+  });
+});
+
+function showTab(t){
+  document.getElementById('panel-state').style.display=t==='state'?'':'none';
+  document.getElementById('panel-owner').style.display=t==='owner'?'':'none';
+  document.getElementById('tab-state').classList.toggle('active',t==='state');
+  document.getElementById('tab-owner').classList.toggle('active',t==='owner');
+}
+
+renderStates();
+renderOwners();
+</script>
+</body>
+</html>
